@@ -14,6 +14,10 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Plura",
   description: "All in one digital marketplace",
+  icons: {
+    icon: "/plura-logo.svg", // this points to /public/plura-logo.svg
+  },
+
 };
 
 export default function RootLayout({
