@@ -4,7 +4,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/nextjs";
 import { useTheme } from "next-themes";
-import { ShoppingCart, Heart } from "lucide-react";
+import { ShoppingCart, Heart, Menu } from "lucide-react";
+import { useState } from "react";
 
 import { Button } from "./ui/button";
 import ThemeToggleIcon from "./ThemeToggleIcon";
@@ -15,9 +16,10 @@ import DroppableArea from "./drag-and-drop/DropItem";
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
   const router = useRouter();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const totalItems = useCartStore((state) => state.totalItems);
-  const wishlistItems = useWishlistStore((state) => state.items); // ✅ Get wishlist
+  const wishlistItems = useWishlistStore((state) => state.items);
 
   const handleToggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
@@ -25,76 +27,81 @@ const Navbar = () => {
 
   return (
     <header className="w-full bg-white dark:bg-gray-950 shadow-sm sticky top-0 z-50">
-      <nav className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
         {/* Logo */}
         <Link
           href="/"
-          className="text-xl font-bold tracking-tight text-primary hover:opacity-80"
+          className="hidden md:block text-xl font-bold tracking-tight hover:opacity-80"
         >
           🛒 Plura
         </Link>
 
-        {/* Center Links */}
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+          onClick={() => setMobileMenuOpen((prev) => !prev)}
+          aria-label="Toggle Menu"
+        >
+          <Menu />
+        </button>
+
+        {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-6">
           <Link
             href="/"
-            className="text-sm font-medium hover:text-primary transition-colors"
+            className="text-sm font-medium transition-all px-4 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-primary"
           >
             Home
           </Link>
           <Link
             href="/products"
-            className="text-sm font-medium hover:text-primary transition-colors"
+            className="text-sm font-medium transition-all px-4 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-primary"
           >
             Products
           </Link>
         </div>
 
-        {/* Right Actions */}
-        <div className="flex items-center gap-4">
+        {/* Actions */}
+        <div className="flex items-center gap-3">
           {/* Theme Toggle */}
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={handleToggleTheme}
-            aria-label="Toggle Theme"
-          >
+          <Button variant="ghost" size="icon" onClick={handleToggleTheme}>
             <ThemeToggleIcon theme={theme ?? "light"} />
           </Button>
 
-          {/* Wishlist Icon with Green Dot */}
+          {/* Wishlist */}
           <Button
             variant="ghost"
             size="icon"
             onClick={() => router.push("/wishlist")}
-            className="relative"
-            aria-label="Wishlist"
+            className="relative group"
           >
-            <Heart size={22} className="text-foreground" />
+            <Heart
+              size={22}
+              className="text-foreground transition-colors group-hover:fill-pink-500 group-hover:text-pink-500"
+            />
             {wishlistItems.length > 0 && (
-              <span className="absolute top-1 right-1 w-[10px] h-[10px] bg-green-500 rounded-full border-[2px] border-white dark:border-gray-950" />
-            )} 
-          </Button>
-
-          {/* Cart Icon with Count */}
-          <DroppableArea id="cart-dropzone">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => router.push("/cart")}
-            className="relative"
-            aria-label="Cart"
-          >
-            <ShoppingCart size={22} />
-            {totalItems > 0 && (
-              <span className="absolute -top-2 -right-2 bg-primary text-white text-[11px] font-bold px-1.5 py-0.5 rounded-full">
-                {totalItems}
-              </span>
+              <span className="absolute top-1 right-1 w-[10px] h-[10px] bg-green-500 rounded-full border-2 border-white dark:border-gray-950" />
             )}
           </Button>
+
+          {/* Cart */}
+          <DroppableArea id="cart-dropzone">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => router.push("/cart")}
+              className="relative"
+            >
+              <ShoppingCart size={22} />
+              {totalItems > 0 && (
+                <span className="absolute -top-2 -right-2 bg-primary text-white text-[11px] font-bold px-1.5 py-0.5 rounded-full">
+                  {totalItems}
+                </span>
+              )}
+            </Button>
           </DroppableArea>
 
-          {/* Auth Buttons */}
+          {/* Auth */}
           <SignedOut>
             <SignInButton mode="modal">
               <Button variant="default" size="sm">
@@ -106,7 +113,7 @@ const Navbar = () => {
           <SignedIn>
             <Link
               href="/profile"
-              className="text-sm font-medium hover:text-primary transition-colors"
+              className="text-sm font-medium px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-primary"
             >
               Profile
             </Link>
@@ -114,6 +121,26 @@ const Navbar = () => {
           </SignedIn>
         </div>
       </nav>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden px-4 pb-4 flex flex-col gap-2 bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800">
+          <Link
+            href="/"
+            onClick={() => setMobileMenuOpen(false)}
+            className="py-2 text-sm font-medium hover:underline"
+          >
+            Home
+          </Link>
+          <Link
+            href="/products"
+            onClick={() => setMobileMenuOpen(false)}
+            className="py-2 text-sm font-medium hover:underline"
+          >
+            Products
+          </Link>
+        </div>
+      )}
     </header>
   );
 };

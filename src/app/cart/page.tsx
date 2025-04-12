@@ -34,7 +34,7 @@ export default function CartPage() {
 
           <div>
             {items.map((item) => (
-              <Card key={item.id}>
+              <Card key={item.id} className="mb-4">
                 <CardContent className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4">
                   <div className="flex items-center gap-4 w-full sm:w-auto">
                     <Image
@@ -85,7 +85,7 @@ export default function CartPage() {
               </Card>
             ))}
 
-            <Separator />
+
 
             <div className="flex justify-between items-center text-lg font-medium px-2">
               <span>Total ({totalItems} items)</span>

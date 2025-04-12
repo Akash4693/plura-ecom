@@ -3,6 +3,7 @@ import { Product } from "@/lib/types/productTypes";
 import ProductGallery from "@/components/ProductGallery";
 import { notFound } from "next/navigation";
 import AddToCartButton from "@/components/AddToCartButton";
+import { Star } from "lucide-react";
 
 type Props = {
   params: { id: string };
@@ -28,9 +29,26 @@ export default async function ProductDetailPage({ params }: Props) {
               {product.title}
             </h1>
             <p className="text-sm text-muted-foreground">{product.category}</p>
+
+            {/* Rating */}
+            <div className="flex items-center gap-2">
+              <div className="flex items-center text-yellow-500">
+                {Array.from({ length: 5 }, (_, i) => (
+                  <Star
+                    key={i}
+                    size={16}
+                    fill={i < Math.round(product.rating.rate) ? "currentColor" : "none"}
+                    stroke="currentColor"
+                  />
+                ))}
+              </div>
+              <span className="text-sm text-gray-500">
+                {product.rating.rate.toFixed(1)} ({product.rating.count} reviews)
+              </span>
+            </div>
           </div>
 
-          <div className="text-2xl lg:text-3xl font-semibold text-primary">
+          <div className="text-2xl lg:text-3xl font-semibold text-primary dark:text-white">
             ${product.price.toFixed(2)}
           </div>
 

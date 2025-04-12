@@ -126,7 +126,7 @@ export const ProductCard = ({ product, isShow }: ProductCardProps) => {
             {product.title}
           </CardTitle>
           <p className="text-sm text-muted-foreground mt-1">{product.category}</p>
-          <p className="text-xl font-semibold text-white mt-2">
+          <p className="text-xl font-semibold text-primary dark:text-white mt-2">
             ${product.price.toFixed(2)}
           </p>
         </CardContent>
