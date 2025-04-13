@@ -33,7 +33,6 @@ export default function ShippingForm({ onNext }: { onNext: () => void }) {
 
   const { setValue } = form
 
-  // Auto-fill name from Clerk
   useEffect(() => {
     if (user?.fullName) {
       setValue("name", user.fullName)
