@@ -1,10 +1,9 @@
 import { useDroppable } from "@dnd-kit/core";
 
-// Update the props to include `children`
 const DroppableArea = ({ id, children }: { id: string; children: React.ReactNode }) => {
   const { setNodeRef, isOver } = useDroppable({ id });
 
-  console.log(`Droppable area ${id} - isOver:`, isOver); // Log the state of isOver
+  console.log(`Droppable area ${id} - isOver:`, isOver); 
 
   return (
     <div
@@ -13,7 +12,7 @@ const DroppableArea = ({ id, children }: { id: string; children: React.ReactNode
         isOver ? "border-blue-500 bg-blue-50 shadow-lg" : "border-transparent"
       }`}
     >
-      {children} {/* Render children */}
+      {children}
     </div>
   );
 };
