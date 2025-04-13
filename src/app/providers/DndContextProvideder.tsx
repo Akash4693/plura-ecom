@@ -23,7 +23,7 @@ const DndContextProvider = ({ children }: Props) => {
 
   const sensors = useSensors(useSensor(PointerSensor));
 
-  // Drag start logic with logging and validation
+ 
   const handleDragStart = (event: any) => {
     const { active } = event;
     const product = active.data?.current?.item as Product;
@@ -36,27 +36,15 @@ const DndContextProvider = ({ children }: Props) => {
     }
   };
 
-  // Drag end logic with logging, validation, and error handling
+
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
 
-    // Log the full event object for debugging
-    console.log("🟢 Drag ended", event);
-
-    // Ensure that the 'active' object has an 'id' and contains the correct product data
-    console.log("👉 Dragged item ID:", active.id);
-
-    // Log the 'over' object and its 'id'
-    console.log("📦 Dropped over:", over?.id);
-    console.log("📦 Full 'over' object:", over);
-
-    // Check if there's a valid drop target
     if (!over || over.id !== "cart-dropzone") {
       console.warn("⚠️ Drop target is invalid or missing product");
       return;
     }
 
-    // Ensure that the dragged product data is available
     const draggedProduct = active.data?.current?.item as Product;
 
     if (!draggedProduct) {
@@ -64,9 +52,8 @@ const DndContextProvider = ({ children }: Props) => {
       return;
     }
 
-    // Log the product and proceed with adding it to the cart
     addToCart(draggedProduct);
-    console.log("✅ Product added to cart:", draggedProduct.title);
+   
   };
 
   return (
