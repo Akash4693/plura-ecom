@@ -13,7 +13,6 @@ export default function RouteLoadingIndicator() {
     if (isPending) {
       setLoading(true);
     } else {
-      // Slight delay for smoothness
       const timeout = setTimeout(() => setLoading(false), 300);
       return () => clearTimeout(timeout);
     }
