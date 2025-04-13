@@ -77,7 +77,6 @@ export const ProductCard = ({ product, isShow }: ProductCardProps) => {
         onClick={handleCardClick}
         className="relative w-full max-w-xs mx-auto shadow-md rounded-lg overflow-hidden transition-transform hover:scale-105 cursor-pointer"
       >
-        {/* Wishlist + Quick Look */}
         {isShow && (
           <div className="absolute top-2 right-2 z-10 flex gap-1">
             <div
@@ -109,7 +108,7 @@ export const ProductCard = ({ product, isShow }: ProductCardProps) => {
             {...listeners}
             {...attributes}
             className="relative w-full h-64"
-            onClick={(e) => e.stopPropagation()} // Prevent navigating when dragging
+            onClick={(e) => e.stopPropagation()} 
           >
             <Image
               src={product.image}
@@ -165,7 +164,6 @@ export const ProductCard = ({ product, isShow }: ProductCardProps) => {
         </CardFooter>
       </Card>
 
-      {/* Quick Look Modal */}
       {isQuickLookOpen && (
         <QuickLookWrapper
           product={product}
