@@ -20,9 +20,13 @@ const HomePage = () => {
           Explore our premium collection with a seamless shopping experience.
         </p>
         <div className="mt-8">
-          <button className="px-8 py-3 bg-transparent text-lg font-semibold rounded-full border-[2px] transition-all">
+           <Button
+            variant="outline"
+            className="px-8 py-3 text-lg font-semibold rounded-full"
+            onClick={() => router.push("/products")}
+          >
             Shop Now
-          </button>
+          </Button>
         </div>
       </section>
     </main>
