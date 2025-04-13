@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   title: "Plura",
   description: "All in one digital marketplace",
   icons: {
-    icon: "/plura-logo.svg", // this points to /public/plura-logo.svg
+    icon: "/plura-logo.svg", 
   },
 
 };
