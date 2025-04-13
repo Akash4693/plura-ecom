@@ -40,7 +40,6 @@ export default function QuickLookModal({
   return (
     <Transition show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-50" onClose={onClose}>
-        {/* Backdrop */}
         <TransitionChild
           as={Fragment}
           enter="ease-out duration-200"
@@ -53,7 +52,6 @@ export default function QuickLookModal({
           <div className="fixed inset-0 bg-black/40 backdrop-blur-sm transition-opacity" />
         </TransitionChild>
 
-        {/* Modal Panel */}
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <TransitionChild
             as={Fragment}
@@ -71,7 +69,6 @@ export default function QuickLookModal({
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.2 }}
               >
-                {/* Close Button */}
                 <div className="flex justify-end">
                   <Button
                     onClick={onClose}
@@ -84,7 +81,6 @@ export default function QuickLookModal({
                   </Button>
                 </div>
 
-                {/* Product Image */}
                 <div className="relative w-full h-64 md:h-80">
                   <Image
                     src={product.image}
@@ -95,9 +91,7 @@ export default function QuickLookModal({
                   />
                 </div>
 
-                {/* Content */}
                 <div className="p-6 space-y-4">
-                  {/* Title + Category + Rating */}
                   <div>
                     <h2 className="text-2xl font-semibold text-zinc-900 dark:text-white">
                       {product.title}
@@ -113,18 +107,15 @@ export default function QuickLookModal({
                     </div>
                   </div>
 
-                  {/* Price */}
                   <p className="text-primary text-lg font-bold">
                     ${product.price.toFixed(2)}
                   </p>
 
-                  {/* Description */}
                   <p className="text-zinc-600 dark:text-zinc-300 text-sm leading-relaxed">
                     {product.description ||
                       "A premium product crafted for you."}
                   </p>
 
-                  {/* Add to Cart */}
                   <Button
                     onClick={handleAddToCart}
                     className="w-full flex items-center gap-2"
