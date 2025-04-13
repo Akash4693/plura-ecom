@@ -28,7 +28,6 @@ const Navbar = () => {
   return (
     <header className="w-full bg-white dark:bg-gray-950 shadow-sm sticky top-0 z-50">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
-        {/* Logo */}
         <Link
           href="/"
           className="hidden md:block text-xl font-bold tracking-tight hover:opacity-80"
@@ -36,7 +35,6 @@ const Navbar = () => {
           🛒 Plura
         </Link>
 
-        {/* Mobile Menu Button */}
         <button
           className="md:hidden p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
           onClick={() => setMobileMenuOpen((prev) => !prev)}
@@ -45,7 +43,6 @@ const Navbar = () => {
           <Menu />
         </button>
 
-        {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-6">
           <Link
             href="/"
@@ -61,14 +58,13 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Actions */}
         <div className="flex items-center gap-3">
-          {/* Theme Toggle */}
+          
           <Button variant="ghost" size="icon" onClick={handleToggleTheme}>
             <ThemeToggleIcon theme={theme ?? "light"} />
           </Button>
 
-          {/* Wishlist */}
+       
           <Button
             variant="ghost"
             size="icon"
@@ -84,7 +80,6 @@ const Navbar = () => {
             )}
           </Button>
 
-          {/* Cart */}
           <DroppableArea id="cart-dropzone">
             <Button
               variant="ghost"
@@ -101,7 +96,6 @@ const Navbar = () => {
             </Button>
           </DroppableArea>
 
-          {/* Auth */}
           <SignedOut>
             <SignInButton mode="modal">
               <Button variant="default" size="sm">
@@ -122,7 +116,6 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden px-4 pb-4 flex flex-col gap-2 bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800">
           <Link
