@@ -50,7 +50,7 @@ export default function ProfilePage() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-10 space-y-8">
-      {/* Profile Header */}
+    
       <Card className="flex items-center gap-6 p-6">
         <Avatar className="h-16 w-16">
           <AvatarImage src={user.imageUrl} />
@@ -64,7 +64,7 @@ export default function ProfilePage() {
         </div>
       </Card>
 
-      {/* Order History */}
+     
       <div>
         <h2 className="text-xl font-semibold mb-4">🧾 Order History</h2>
 
