@@ -1,4 +1,3 @@
-// components/skeletons/OrderCardSkeleton.tsx
 import { Card } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
 
