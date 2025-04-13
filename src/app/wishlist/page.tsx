@@ -18,10 +18,10 @@ export default function Wishlist() {
     if (userId) loadWishlist(userId);
   }, [userId, loadWishlist]);
 
-  // Handle the online event to sync wishlist when back online
+  
   useEffect(() => {
     const handleOnline = () => {
-      syncWishlist(); // Sync wishlist once back online
+      syncWishlist(); 
     };
 
     window.addEventListener('online', handleOnline);
