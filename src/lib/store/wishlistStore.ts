@@ -13,7 +13,7 @@ type WishlistState = {
   removeItem: (id: number, userId: string) => void;
   loadWishlist: (userId: string) => void;
   isItemWishlisted: (id: number) => boolean;
-  syncWishlist: () => void; // New method to sync with server
+  syncWishlist: () => void; 
 };
 
 const wishlistStoreCreator: StateCreator<WishlistState> = (set, get) => ({
@@ -28,7 +28,6 @@ const wishlistStoreCreator: StateCreator<WishlistState> = (set, get) => ({
     localStorage.setItem(`wishlist-${userId}`, JSON.stringify(updated));
     set({ items: updated });
     
-    // Try syncing with the server immediately if online
     if (navigator.onLine) {
       get().syncWishlist();
     }
@@ -39,7 +38,6 @@ const wishlistStoreCreator: StateCreator<WishlistState> = (set, get) => ({
     localStorage.setItem(`wishlist-${userId}`, JSON.stringify(updated));
     set({ items: updated });
     
-    // Try syncing with the server immediately if online
     if (navigator.onLine) {
       get().syncWishlist();
     }
@@ -62,9 +60,8 @@ const wishlistStoreCreator: StateCreator<WishlistState> = (set, get) => ({
 
   syncWishlist: async () => {
     const wishlist = get().items;
-    const userId = 'someUserId'; // Replace with actual userId
+    const userId = 'someUserId';
 
-    // Sync the wishlist to the server
     try {
       const response = await fetch('/api/sync-wishlist', {
         method: 'POST',
@@ -73,14 +70,12 @@ const wishlistStoreCreator: StateCreator<WishlistState> = (set, get) => ({
       });
 
       if (response.ok) {
-        // Sync successful, clear any failed sync attempts from localStorage
         localStorage.removeItem('failed-wishlist-sync');
       } else {
         throw new Error('Failed to sync wishlist');
       }
     } catch (error) {
       console.error('Error syncing wishlist:', error);
-      // Store the failed wishlist data for later sync
       localStorage.setItem('failed-wishlist-sync', JSON.stringify(wishlist));
     }
   },
