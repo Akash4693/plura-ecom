@@ -34,7 +34,6 @@ const ReviewOrder = ({ onConfirm, onBack }: ReviewOrderProps) => {
       duration: 3000,
     })
 
-    // Delay onConfirm slightly to allow the toast to settle, avoiding race conditions
     setTimeout(() => {
       onConfirm()
     }, 100)
@@ -48,7 +47,6 @@ const ReviewOrder = ({ onConfirm, onBack }: ReviewOrderProps) => {
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
-        {/* Cart Items */}
         <div className="space-y-4">
           {items.map((item) => (
             <div key={item.id} className="flex items-center justify-between">
@@ -79,7 +77,6 @@ const ReviewOrder = ({ onConfirm, onBack }: ReviewOrderProps) => {
 
         <Separator />
 
-        {/* Total */}
         <div className="flex justify-between items-center">
           <p className="text-lg font-medium text-gray-700 dark:text-gray-300">Total</p>
           <p className="text-xl font-bold text-gray-900 dark:text-white">
@@ -87,7 +84,6 @@ const ReviewOrder = ({ onConfirm, onBack }: ReviewOrderProps) => {
           </p>
         </div>
 
-        {/* Shipping Info */}
         {shipping && (
           <div>
             <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">
@@ -104,7 +100,6 @@ const ReviewOrder = ({ onConfirm, onBack }: ReviewOrderProps) => {
           </div>
         )}
 
-        {/* Payment Info */}
         {payment && (
           <div>
             <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">
