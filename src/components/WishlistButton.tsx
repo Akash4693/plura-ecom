@@ -1,4 +1,3 @@
-// components/WishlistButton.tsx
 import { Heart } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
