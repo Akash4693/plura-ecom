@@ -17,12 +17,11 @@ export default async function ProductDetailPage({ params }: Props) {
   return (
     <div className="max-w-6xl mx-auto px-4 py-[140px] flex justify-center items-center">
       <div className="flex flex-col lg:flex-row justify-center gap-12 items-center lg:items-start">
-        {/* Image Gallery */}
+       
         <div className="w-full lg:w-1/2 rounded-xl shadow-md overflow-hidden">
           <ProductGallery image={product.image} />
         </div>
 
-        {/* Product Info */}
         <div className="w-full lg:w-1/2 space-y-6">
           <div className="space-y-2">
             <h1 className="text-3xl lg:text-4xl font-bold tracking-tight">
@@ -30,7 +29,6 @@ export default async function ProductDetailPage({ params }: Props) {
             </h1>
             <p className="text-sm text-muted-foreground">{product.category}</p>
 
-            {/* Rating */}
             <div className="flex items-center gap-2">
               <div className="flex items-center text-yellow-500">
                 {Array.from({ length: 5 }, (_, i) => (
