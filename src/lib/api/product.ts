@@ -19,6 +19,6 @@ export const getProductById = async (id: string): Promise<Product | null> => {
       return response.data;
     } catch (error) {
       console.error(`Error fetching product with ID ${id}:`, error);
-      return null; // return null to gracefully handle notFound() in the page
+      return null; 
     }
   };
